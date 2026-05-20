@@ -46,7 +46,16 @@ public class Agendamento {
     )
     private List<Servico> servicos;
 
-    public Agendamento() {}
+    public Agendamento() {
+    }
+
+    public Agendamento(LocalDateTime dataHora, Cliente cliente, Barbeiro barbeiro, List<Servico> servicos, String status) {
+        this.dataHora = dataHora;
+        this.cliente = cliente;
+        this.barbeiro = barbeiro;
+        this.servicos = servicos;
+        this.status = status;
+    }
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

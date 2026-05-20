@@ -1,0 +1,9 @@
+{
+  "yaml.schemas": {
+    "https://www.schemastore.org/any.json": [
+      "api/src/main/resources/application.yaml",
+      "api/src/main/resources/application.yml"
+    ]
+  },
+  "java.configuration.updateBuildConfiguration": "interactive"
+}

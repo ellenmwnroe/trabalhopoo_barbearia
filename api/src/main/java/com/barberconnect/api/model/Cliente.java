@@ -9,7 +9,9 @@ public class Cliente extends Usuario {
 
     private Integer historicoFidelidade = 0;
 
-    public Cliente() {}
+    protected Cliente() {
+        // Constructor required by JPA.
+    }
 
     public Integer getHistoricoFidelidade() {
         return historicoFidelidade;

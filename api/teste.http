@@ -1,0 +1,39 @@
+### 1. Criar um Barbeiro (POST)
+POST http://localhost:8080/barbeiros
+Content-Type: application/json
+
+{
+  "nome": "Carlos Barber",
+  "email": "carlos@barbearia.com",
+  "telefone": "98888888888",
+  "especialidade": "Degradê e Barba",
+  "percentualComissao": 40.0
+}
+
+###
+
+### 2. Criar um Serviço (POST)
+POST http://localhost:8080/servicos
+Content-Type: application/json
+
+{
+  "nome": "Corte Degradê",
+  "preco": 45.0,
+  "tempoEstimadoMinutos": 40
+}
+
+###
+
+### 3. Criar o Agendamento (POST)
+# Vai amarrar o seu Cliente (ID 1) com o Barbeiro que acabamos de criar (ID 1)
+### Criar o Agendamento (POST)
+POST http://localhost:8080/agendamentos
+Content-Type: application/json
+
+{
+  "clienteId": 1,
+  "barbeiroId": 4,
+  "dataHora": "2026-05-25T14:30:00"
+}
+### Listar todos os Barbeiros (GET)
+GET http://localhost:8080/barbeiros

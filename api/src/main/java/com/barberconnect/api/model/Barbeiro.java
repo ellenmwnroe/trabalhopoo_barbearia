@@ -10,7 +10,16 @@ public class Barbeiro extends Usuario {
     private String especialidade;
     private Double percentualComissao;
 
-    public Barbeiro() {}
+   
+    protected Barbeiro() {
+        // Construtor vazio exigido pelo JPA
+    }
+
+    public Barbeiro(String nome, String email, String telefone, String especialidade, Double percentualComissao) {
+        super(nome, email, telefone); // Repassa para a classe mãe Usuario
+        this.especialidade = especialidade;
+        this.percentualComissao = percentualComissao;
+    }
 
     public String getEspecialidade() {
         return especialidade;

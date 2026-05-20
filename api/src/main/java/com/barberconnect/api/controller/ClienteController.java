@@ -13,7 +13,8 @@ import com.barberconnect.api.model.Cliente;
 import com.barberconnect.api.service.ClienteService;
 
 @RestController
-@RequestMapping("/clientes") // A rota base será algo como http://localhost:8080/clientes
+
+@RequestMapping("/clientes") 
 public class ClienteController {
 
     private final ClienteService service;
