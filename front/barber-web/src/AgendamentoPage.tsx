@@ -58,7 +58,7 @@ export default function AgendamentoPage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          clienteId: 1, // Hardcoded: O ID do Cliente
+          clienteId: 4, // Hardcoded: O ID do Cliente
           barbeiroId: barbeiroSelecionado,
           servicoId: servicoSelecionado,
           dataHora: dataHora + ":00" 
