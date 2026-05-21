@@ -60,6 +60,7 @@ export default function AgendamentoPage() {
         body: JSON.stringify({
           clienteId: 1, // Hardcoded: O ID do Cliente
           barbeiroId: barbeiroSelecionado,
+          servicoId: servicoSelecionado,
           dataHora: dataHora + ":00" 
         }),
       });

@@ -1,7 +1,7 @@
 spring:
   datasource:
     # Colocamos o link do Supabase DEPOIS dos dois pontos para ele ser o padrão no seu PC!
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://aws-1-us-west-2.pooler.supabase.com:6543/postgres}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://aws-1-us-west-2.pooler.supabase.com:6543/postgres?prepareThreshold=0}
     username: ${SPRING_DATASOURCE_USERNAME:postgres.pyokxlxsglxcrlqbycgk}
     password: ${SPRING_DATASOURCE_PASSWORD:gWQxYQB0KFIC1QiF}
     driver-class-name: org.postgresql.Driver
