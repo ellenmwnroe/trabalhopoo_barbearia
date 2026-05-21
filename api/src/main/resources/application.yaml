@@ -1,14 +1,13 @@
 spring:
   datasource:
-    # Tenta ler a variável do Railway; se não existir, usa o fallback local
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/barberconnect}
-    username: ${SPRING_DATASOURCE_USERNAME:postgres}
-    password: ${SPRING_DATASOURCE_PASSWORD:root}
+    # Colocamos o link do Supabase DEPOIS dos dois pontos para ele ser o padrão no seu PC!
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://aws-1-us-west-2.pooler.supabase.com:6543/postgres}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres.pyokxlxsglxcrlqbycgk}
+    password: ${SPRING_DATASOURCE_PASSWORD:gWQxYQB0KFIC1QiF}
     driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
-      # Cria ou atualiza as tabelas automaticamente no Supabase
       ddl-auto: update
     show-sql: true
     properties:
@@ -17,6 +16,4 @@ spring:
         format_sql: true
 
 server:
-  # O Railway vai injetar a porta automaticamente na nuvem através da variável PORT.
-  # Localmente, a aplicação continuará a subir na porta 8080.
   port: ${PORT:8080}
