@@ -15,6 +15,9 @@ interface Barbeiro {
   especialidade: string;
 }
 
+// URL dinâmica para nuvem ou localhost
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+
 export default function AgendamentoPage() {
   const [servicos, setServicos] = useState<Servico[]>([]);
   const [barbeiros, setBarbeiros] = useState<Barbeiro[]>([]);
@@ -25,14 +28,14 @@ export default function AgendamentoPage() {
   
   const [carregando, setCarregando] = useState(false);
 
-  // Busca os dados reais do seu Spring Boot assim que a tela carrega
+  // Busca os dados reais usando a URL dinâmica
   useEffect(() => {
-    fetch('http://localhost:8080/servicos')
+    fetch(`${API_BASE_URL}/servicos`)
       .then(res => res.json())
       .then(data => setServicos(data))
       .catch(err => console.error("Erro ao buscar serviços:", err));
 
-    fetch('http://localhost:8080/barbeiros')
+    fetch(`${API_BASE_URL}/barbeiros`)
       .then(res => res.json())
       .then(data => setBarbeiros(data))
       .catch(err => console.error("Erro ao buscar barbeiros:", err));
@@ -49,23 +52,20 @@ export default function AgendamentoPage() {
     setCarregando(true);
 
     try {
-      // Envia o POST real para o Java!
-      const response = await fetch('http://localhost:8080/agendamentos', {
+      const response = await fetch(`${API_BASE_URL}/agendamentos`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          clienteId: 1, // Hardcoded: O ID do Cliente que criamos lá atrás
+          clienteId: 1, // Hardcoded: O ID do Cliente
           barbeiroId: barbeiroSelecionado,
-          // O Spring Boot espera o formato ISO com segundos, então adicionamos o ":00" no final
           dataHora: dataHora + ":00" 
         }),
       });
 
       if (response.status === 201) {
         alert('🎉 Agendamento Confirmado com Sucesso!');
-        // Limpa o formulário
         setServicoSelecionado(null);
         setBarbeiroSelecionado(null);
         setDataHora('');
@@ -74,7 +74,7 @@ export default function AgendamentoPage() {
       }
     } catch (error) {
       console.error("Erro de conexão:", error);
-      alert('Erro de conexão com o servidor. O Java está rodando?');
+      alert('Erro de conexão com o servidor. O back-end está rodando?');
     } finally {
       setCarregando(false);
     }
@@ -87,17 +87,20 @@ export default function AgendamentoPage() {
         {/* Painel Esquerdo */}
         <div className="md:w-2/5 relative p-10 flex flex-col justify-between overflow-hidden min-h-[300px]">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-zinc-900/60 backdrop-blur-[2px]"></div>
+          {/* Atualizado para bg-linear-to-t */}
+          <div className="absolute inset-0 bg-linear-to-t from-zinc-950 via-zinc-950/80 to-zinc-900/60 backdrop-blur-[2px]"></div>
           
           <div className="relative z-10">
-            <h1 className="text-4xl font-extrabold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600 mb-2">
+            {/* Atualizado para bg-linear-to-r */}
+            <h1 className="text-4xl font-extrabold tracking-tighter text-transparent bg-clip-text bg-linear-to-r from-amber-400 to-amber-600 mb-2">
               Barber<span className="text-white">Connect</span>
             </h1>
             <p className="text-zinc-300 text-sm font-medium">A sua barbearia clássica,<br/>a um clique de distância.</p>
           </div>
           
           <div className="relative z-10 hidden md:block mt-12">
-            <div className="w-12 h-1 bg-gradient-to-r from-amber-500 to-transparent mb-6 rounded-full"></div>
+            {/* Atualizado para bg-linear-to-r */}
+            <div className="w-12 h-1 bg-linear-to-r from-amber-500 to-transparent mb-6 rounded-full"></div>
             <p className="text-zinc-400 italic text-sm leading-relaxed border-l-2 border-zinc-700 pl-4">
               "O estilo é a perfeição de um ponto de vista. Reserve seu momento."
             </p>
@@ -186,10 +189,11 @@ export default function AgendamentoPage() {
               />
             </div>
 
+            {/* Atualizado para bg-linear-to-r */}
             <button 
               type="submit"
               disabled={carregando}
-              className="group w-full bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-zinc-950 font-bold text-lg py-4 rounded-xl transition-all duration-300 shadow-xl shadow-amber-500/20 flex justify-center items-center gap-2 transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:scale-100"
+              className="group w-full bg-linear-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-zinc-950 font-bold text-lg py-4 rounded-xl transition-all duration-300 shadow-xl shadow-amber-500/20 flex justify-center items-center gap-2 transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:scale-100"
             >
               {carregando ? (
                 <>Processando... <Loader2 size={20} className="animate-spin" /></>
